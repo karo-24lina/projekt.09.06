@@ -1,3 +1,7 @@
+#<<<<<<< 
+feat-init-data
+print('Hello world')
+#=======
 from tkinter import *
 from tkinter import ttk  # Import ttk for Treeview and Notebook
 import tkintermapview
@@ -583,3 +587,5 @@ map_widget.add_left_click_map_command(add_marker_on_click)
 root.after(1000, load_default_hotels)
 
 root.mainloop()
+#>>>>>>> 
+main
