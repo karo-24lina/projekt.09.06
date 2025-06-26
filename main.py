@@ -15,12 +15,13 @@ FILTER_PLACEHOLDER_TEXT = "Filtruj po nazwie hotelu..."
 
 def load_default_test_data():
     # Domyślne hotele
-    hotels.append({'name': 'Hotel1', 'location': 'Warszawa', 'lat': 52.237049, 'long': 21.017532}) #Dodaje słowniki reprezentujące hotele z nazwą, lokalizacją i współrzędnymi (lat, long) do listy hotels
-    hotels.append({'name': 'Hotel2', 'location': 'Gdansk', 'lat': 54.372158, 'long': 18.638306})
-    hotels.append({'name': 'Hotel3', 'location': 'Krakow', 'lat': 50.0647, 'long': 19.9450})
+    # Dodaje słowniki reprezentujące hotele z nazwą, lokalizacją i współrzędnymi (lat, long) do listy hotels
+    hotels.append({'name': 'Novotel', 'location': 'Warszawa', 'lat': 52.237049, 'long': 21.017532})
+    hotels.append({'name': 'Mewa', 'location': 'Gdansk', 'lat': 54.372158, 'long': 18.638306})
+    hotels.append({'name': 'Wawel', 'location': 'Krakow', 'lat': 50.0647, 'long': 19.9450})
     hotels.append({'name': 'Sobieski', 'location': 'Poznan', 'lat': 52.40, 'long': 16.91})
-    hotels.append({'name': 'Novotel1', 'location': 'Wroclaw', 'lat': 51.14, 'long': 17.0})
-    hotels.append({'name': 'Novotel2', 'location': 'Lublin', 'lat': 51.1954, 'long': 22.7578})
+    hotels.append({'name': 'NYX Hotel', 'location': 'Wroclaw', 'lat': 51.14, 'long': 17.0})
+    hotels.append({'name': 'Kryształ', 'location': 'Lublin', 'lat': 51.1954, 'long': 22.7578})
 
     # Domyślni pracownicy
     employees.append({'imie_nazwisko': 'Jan Kowalski', 'miejsce_zamieszkania': 'Warszawa', 'lat': 52.2370, 'long': 21.017, 'hotel_name': 'Hotel1'})
@@ -150,10 +151,12 @@ def update_hotels(i):
     new_name, new_location = entry_name.get().strip(), entry_location.get().strip() #Pobiera wpisane dane z formularza i usuwa białe znaki z początku/końca.
     new_lat_str, new_long_str = entry_lat.get().strip(), entry_long.get().strip() #Pobiera wpisane współrzędne jako ciągi znaków.
     if not new_name or not new_location: messagebox.showwarning("Brak danych", "Pola nie mogą być puste."); return #Jeśli nazwa lub miejscowość są puste – pokazuje ostrzeżenie i przerywa.
+    #Próbuje przekonwertować współrzędne na liczby zmiennoprzecinkowe.
     try:
         new_lat, new_long = float(new_lat_str), float(new_long_str)
+    #Jeśli konwersja się nie uda – pokazuje błąd i przerywa.
     except ValueError:
-        messagebox.showerror("Błąd danych", "Szerokość i długość muszą być liczbami."); return
+        messagebox.showerror("Błąd danych", "Szerokość i długość muszą być liczbami."); return #Jeśli konwersja się nie uda – pokazuje błąd i przerywa.
 
     # Walidacja unikalności nazwy niewrażliwa na wielkość liter przy edycji
     for index, h in enumerate(hotels):
